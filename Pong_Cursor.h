@@ -1,0 +1,121 @@
+#ifndef CURSOR_H
+#define CURSOR_H
+
+class Cursor : public Game_Object
+{
+  public:
+    virtual ~Cursor(){}
+
+    Cursor(const string & name, SDL_Renderer* const & renderer) : Game_Object("Cursor", name)
+    {
+      #include "Pong_Cursor_Img.h"
+      m_texture = new LTexture;
+      m_texture->load_from_memory(renderer, CURSOR_IMG, sizeof(CURSOR_IMG));
+      m_hitbox.w = m_texture->get_width();
+      m_hitbox.h = m_texture->get_height();
+      m_hitbox.x = 58;
+      m_hitbox.y = 18;
+      m_x = m_hitbox.x;
+      m_y = m_hitbox.y;
+    }
+
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
+    {
+      for(long i{0}; i < obj_list.size(); ++i)
+      {
+        if(obj_list[i]->get_type() == "Input")
+        {
+          if(obj_list[i]->get_name() == "Down")
+          {
+            if(obj_list[i]->state_changed(0, 1) == true)
+            {
+              if(m_state == 0)
+              {
+                m_next_state = 1;
+              }
+              else
+              {
+                m_next_state = m_state + 1;
+                if(m_next_state == 6)
+                {
+                  m_next_state = 1;
+                }
+              }
+            }
+          }
+          if(obj_list[i]->get_name() == "Up")
+          {
+            if(obj_list[i]->state_changed(0, 1) == true)
+            {
+              if(m_state == 0)
+              {
+                m_next_state = 1;
+              }
+              else
+              {
+                m_next_state = m_state - 1;
+                if(m_next_state == 0)
+                {
+                  m_next_state = 5;
+                }
+              }
+            }
+          }
+        }
+      }
+      m_hitbox.y = 18 + 54 * (m_state - 1);
+      m_y = m_hitbox.y;
+
+      switch(m_state)
+      {
+        case 1:
+          for(long i{0}; i < obj_list.size(); ++i)
+          {
+            if(obj_list[i]->get_type() == "Input")
+            {
+              if(obj_list[i]->get_name() == "Space")
+              {
+                if(obj_list[i]->state_changed(0, 1) == true)
+                {
+                  obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 1, SCREEN_HEIGHT}));
+                  obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 1, SCREEN_HEIGHT}));
+                  obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 1}));
+                  obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 1}));
+                  obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 1, 64}));
+                  obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 1, 64}));
+                  for(long j{0}; j < obj_list.size(); ++j)
+                  {
+                    if(obj_list[j]->get_type() == "Menu")
+                    {
+                      if(obj_list[j]->get_name() == "Menu")
+                      {
+                        delete obj_list[j];
+                        obj_list[j] = nullptr;
+                        obj_list.erase(obj_list.begin() + j);
+                        --j;
+                      }
+                    }
+                    if(obj_list[j]->get_type() == "Cursor")
+                    {
+                      if(obj_list[j]->get_name() == "Cursor")
+                      {
+                        delete obj_list[j];
+                        obj_list[j] = nullptr;
+                        obj_list.erase(obj_list.begin() + j);
+                        --j;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+};
+  
+#endif

@@ -31,8 +31,11 @@ const long SAMPLE_SIZE{2048};
 #include "Pong_LTexture.h"
 #include "Pong_Functions.h"
 #include "Pong_Object_Interface.h"
+#include "Pong_Paddle.h"
+#include "Pong_Menu.h"
 #include "Pong_Ball.h"
 #include "Pong_Screen_Edge.h"
+#include "Pong_Cursor.h"
 #include "Pong_Title.h"
 #include "Pong_Input.h"
 

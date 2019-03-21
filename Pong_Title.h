@@ -25,11 +25,8 @@ class Title : public Game_Object
           {
             if(obj_list[i]->state_changed(0, 1) == true)
             {
-              obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 1, SCREEN_HEIGHT}));
-              obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 1, SCREEN_HEIGHT}));
-              obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 1}));
-              obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 1}));
-              obj_list.push_back(new Box("Box", renderer));
+              obj_list.push_back(new Menu(renderer));
+              obj_list.push_back(new Cursor("Cursor", renderer));
               for(long j{0}; j < obj_list.size(); ++j)
               {
                 if(obj_list[j]->get_type() == "Title")
@@ -39,6 +36,7 @@ class Title : public Game_Object
                     delete obj_list[j];
                     obj_list[j] = nullptr;
                     obj_list.erase(obj_list.begin() + j);
+                    j--;
                   }
                 }
               }
