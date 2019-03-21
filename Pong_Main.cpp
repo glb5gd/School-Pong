@@ -31,6 +31,10 @@ int main(int argc, char* args[])
 
     obj_list.push_back(new Title(renderer));
     obj_list.push_back(new Key_Space());
+    obj_list.push_back(new Key_Up());
+    obj_list.push_back(new Key_Down());
+    obj_list.push_back(new Key_W());
+    obj_list.push_back(new Key_S());
 
     //While the user hasn't quit
     while(quit == false)
