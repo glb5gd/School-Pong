@@ -8,23 +8,7 @@ class Key_Space : public Abstract_Object
 
     Key_Space() : Abstract_Object("Input", "Space"){}
 
-    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
-    {
-      if(e.type == SDL_KEYDOWN)
-      {
-        if(e.key.keysym.sym == SDLK_SPACE)
-        {
-          m_next_state = 1;
-        }
-      }
-      if(e.type == SDL_KEYUP)
-      {
-        if(e.key.keysym.sym == SDLK_SPACE)
-        {
-          m_next_state = 0;
-        }
-      }
-    }
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
 class Key_Up : public Abstract_Object
@@ -34,23 +18,7 @@ class Key_Up : public Abstract_Object
 
     Key_Up() : Abstract_Object("Input", "Up"){}
 
-    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
-    {
-      if(e.type == SDL_KEYDOWN)
-      {
-        if(e.key.keysym.sym == SDLK_UP)
-        {
-          m_next_state = 1;
-        }
-      }
-      if(e.type == SDL_KEYUP)
-      {
-        if(e.key.keysym.sym == SDLK_UP)
-        {
-          m_next_state = 0;
-        }
-      }
-    }
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
 class Key_Down : public Abstract_Object
@@ -60,23 +28,7 @@ class Key_Down : public Abstract_Object
 
     Key_Down() : Abstract_Object("Input", "Down"){}
 
-    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
-    {
-      if(e.type == SDL_KEYDOWN)
-      {
-        if(e.key.keysym.sym == SDLK_DOWN)
-        {
-          m_next_state = 1;
-        }
-      }
-      if(e.type == SDL_KEYUP)
-      {
-        if(e.key.keysym.sym == SDLK_DOWN)
-        {
-          m_next_state = 0;
-        }
-      }
-    }
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
 class Key_W : public Abstract_Object
@@ -86,23 +38,7 @@ class Key_W : public Abstract_Object
 
     Key_W() : Abstract_Object("Input", "W"){}
 
-    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
-    {
-      if(e.type == SDL_KEYDOWN)
-      {
-        if(e.key.keysym.sym == SDLK_w)
-        {
-          m_next_state = 1;
-        }
-      }
-      if(e.type == SDL_KEYUP)
-      {
-        if(e.key.keysym.sym == SDLK_w)
-        {
-          m_next_state = 0;
-        }
-      }
-    }
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
 class Key_S : public Abstract_Object
@@ -112,23 +48,7 @@ class Key_S : public Abstract_Object
 
     Key_S() : Abstract_Object("Input", "S"){}
 
-    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
-    {
-      if(e.type == SDL_KEYDOWN)
-      {
-        if(e.key.keysym.sym == SDLK_s)
-        {
-          m_next_state = 1;
-        }
-      }
-      if(e.type == SDL_KEYUP)
-      {
-        if(e.key.keysym.sym == SDLK_s)
-        {
-          m_next_state = 0;
-        }
-      }
-    }
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
 #endif
