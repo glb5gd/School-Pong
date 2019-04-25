@@ -35,7 +35,7 @@ void Win_Graphic::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* co
         {
           for(long j{0}; j < obj_list.size(); ++j)
           {
-            if(obj_list[j]->get_type() != "Input")
+            if(obj_list[j]->get_type() != "Input" && obj_list[j]->get_type() != "Sound")
             {
               delete obj_list[j];
               obj_list[j] = nullptr;
