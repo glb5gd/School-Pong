@@ -60,26 +60,27 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
   m_hitbox.y = 18 + 54 * (m_state - 1);
   m_y = m_hitbox.y;
 
-  switch(m_state)
+  for(long i{0}; i < obj_list.size(); ++i)
   {
-    case 1:
-      for(long i{0}; i < obj_list.size(); ++i)
+    if(obj_list[i]->get_type() == "Input")
+    {
+      if(obj_list[i]->get_name() == "Space")
       {
-        if(obj_list[i]->get_type() == "Input")
+        if(obj_list[i]->state_changed(0, 1) == true)
         {
-          if(obj_list[i]->get_name() == "Space")
+          switch(m_state)
           {
-            if(obj_list[i]->state_changed(0, 1) == true)
-            {
+            case 1:
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
               obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 3}));
-              obj_list.push_back(new Box("Ball", renderer));
+              obj_list.push_back(new Box("Ball", renderer, 5));
               obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 3, 64}));
               obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 3, 64}));
               obj_list.push_back(new P1Score("P1"));
               obj_list.push_back(new P2Score("P2"));
+              obj_list.push_back(new Game_Mode(1));
               for(long j{0}; j < obj_list.size(); ++j)
               {
                 if(obj_list[j]->get_type() == "Menu")
@@ -105,13 +106,169 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
                   }
                 }
               }
-            }
+              break;
+
+            case 2:
+              obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Box("Ball", renderer, 7));
+              obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new P1Score("P1"));
+              obj_list.push_back(new P2Score("P2"));
+              obj_list.push_back(new Game_Mode(2));
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Menu")
+                {
+                  if(obj_list[j]->get_name() == "Menu")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+                if(obj_list[j]->get_type() == "Cursor")
+                {
+                  if(obj_list[j]->get_name() == "Cursor")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+              }
+              break;
+
+            case 3:
+              obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Box("Ball", renderer, 5));
+              obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new P1Score("P1"));
+              obj_list.push_back(new P2Score("P2"));
+              obj_list.push_back(new Wall("1", renderer, SDL_Point{SCREEN_WIDTH / 2 - 4, 0}));
+              obj_list.push_back(new Wall("2", renderer, SDL_Point{SCREEN_WIDTH / 2 - 4, SCREEN_HEIGHT - 128}));
+              obj_list.push_back(new Game_Mode(3));
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Menu")
+                {
+                  if(obj_list[j]->get_name() == "Menu")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+                if(obj_list[j]->get_type() == "Cursor")
+                {
+                  if(obj_list[j]->get_name() == "Cursor")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+              }
+              break;
+
+            case 4:
+              obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Box("Ball", renderer, 5));
+              obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new P1Score("P1"));
+              obj_list.push_back(new P2Score("P2"));
+              obj_list.push_back(new Wall2("1", renderer, SDL_Point{SCREEN_WIDTH / 2 - 4, 112}));
+              obj_list.push_back(new Game_Mode(4));
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Menu")
+                {
+                  if(obj_list[j]->get_name() == "Menu")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+                if(obj_list[j]->get_type() == "Cursor")
+                {
+                  if(obj_list[j]->get_name() == "Cursor")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+              }
+              break;
+
+            case 5:
+              obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
+              obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Screen_Edge("Bottom", SDL_Rect{0, SCREEN_HEIGHT, SCREEN_WIDTH, 3}));
+              obj_list.push_back(new Box("Ball", renderer, 5));
+              obj_list.push_back(new Box("Ball", renderer, 5));
+              obj_list.push_back(new Paddle("P1", renderer, SDL_Rect{32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new Paddle("P2", renderer, SDL_Rect{SCREEN_WIDTH - 32, SCREEN_HEIGHT / 2, 3, 64}));
+              obj_list.push_back(new P1Score("P1"));
+              obj_list.push_back(new P2Score("P2"));
+              obj_list.push_back(new Game_Mode(5));
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Menu")
+                {
+                  if(obj_list[j]->get_name() == "Menu")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+                if(obj_list[j]->get_type() == "Cursor")
+                {
+                  if(obj_list[j]->get_name() == "Cursor")
+                  {
+                    delete obj_list[j];
+                    obj_list[j] = nullptr;
+                    obj_list.erase(obj_list.begin() + j);
+                    --j;
+                    i = 0;
+                  }
+                }
+              }
+              break;
+
+            default:
+              break;
           }
         }
       }
-      break;
-
-    default:
-      break;
+    }
   }
 }

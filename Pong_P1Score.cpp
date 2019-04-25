@@ -28,7 +28,28 @@ void P1Score::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const 
         }
         if(obj_list[i]->state_changed(1, 0) == true && m_state != 11)
         {
-          obj_list.push_back(new Box("Ball", renderer));
+          for(long j{0}; j < obj_list.size(); ++j)
+          {
+            if(obj_list[j]->get_type() == "Game Mode")
+            {
+              if(obj_list[j]->get_name() == "Game Mode")
+              {
+                if(obj_list[j]->get_state() == 2)
+                {
+                  obj_list.push_back(new Box("Ball", renderer, 7));
+                }
+                else if(obj_list[j]->get_state() == 5)
+                {
+                  obj_list.push_back(new Box("Ball", renderer, 5));
+                  obj_list.push_back(new Box("Ball", renderer, 5));
+                }
+                else
+                {
+                  obj_list.push_back(new Box("Ball", renderer, 5));
+                }
+              }
+            }
+          }
           for(long j{0}; j < obj_list.size(); ++j)
           {
             if(obj_list[j]->get_type() == "Timer")
@@ -54,7 +75,7 @@ void P1Score::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const 
           obj_list.push_back(new Win_Graphic(m_name, renderer));
           for(long j{0}; j < obj_list.size(); ++j)
           {
-            if(obj_list[j]->get_type() != "Timer" && obj_list[j]->get_type() != "Win Graphic" && obj_list[j]->get_type() != "Input")
+            if(obj_list[j]->get_type() != "Timer" && obj_list[j]->get_type() != "Win Graphic" && obj_list[j]->get_type() != "Input" && obj_list[j]->get_type() != "Sound" && obj_list[j]->get_type() != "Game Mode")
             {
               delete obj_list[j];
               obj_list[j] = nullptr;

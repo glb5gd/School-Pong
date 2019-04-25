@@ -43,5 +43,8 @@ const long SAMPLE_SIZE{2048};
 #include "Pong_Cursor.h"
 #include "Pong_Title.h"
 #include "Pong_Input.h"
+#include "Pong_Wall.h"
+#include "Pong_Wall2.h"
+#include "Pong_Game_Mode.h"
 
 #endif
