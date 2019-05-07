@@ -35,6 +35,7 @@ int main(int argc, char* args[])
     obj_list.push_back(new Key_Down());
     obj_list.push_back(new Key_W());
     obj_list.push_back(new Key_S());
+    obj_list.push_back(new Key_Escape());
     obj_list.push_back(new Sound("bump", "Pong_Images\\smb_bump.wav"));
     obj_list.push_back(new Sound("score", "Pong_Images\\smb_kick.wav"));
 
