@@ -51,4 +51,14 @@ class Key_S : public Abstract_Object
     virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
 };
 
+class Key_Escape : public Abstract_Object
+{
+  public:
+    virtual ~Key_Escape(){}
+
+    Key_Escape() : Abstract_Object("Input", "Escape"){}
+
+    virtual void obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e);
+};
+
 #endif

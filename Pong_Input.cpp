@@ -149,3 +149,24 @@ void Key_S::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & 
     }
   }
 }
+
+void Key_Escape::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & renderer, SDL_Event & e)
+{
+  if(e.type == SDL_KEYDOWN)
+  {
+    if(e.key.keysym.sym == SDLK_ESCAPE)
+    {
+      for(long j{0}; j < obj_list.size(); ++j)
+      {
+        if(obj_list[j]->get_type() != "Input" && obj_list[j]->get_type() != "Sound")
+        {
+          delete obj_list[j];
+          obj_list[j] = nullptr;
+          obj_list.erase(obj_list.begin() + j);
+          --j;
+        }
+      }
+      obj_list.push_back(new Title(renderer));
+    }
+  }
+}
