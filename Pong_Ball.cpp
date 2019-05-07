@@ -34,6 +34,16 @@ void Box::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & re
       {
         if(obj_list[i]->get_name() == "Top" || obj_list[i]->get_name() == "Bottom")
         {
+          for(long j{0}; j < obj_list.size(); ++j)
+          {
+            if(obj_list[j]->get_type() == "Sound")
+            {
+              if(obj_list[j]->get_name() == "bump")
+              {
+                obj_list[j]->obj_main(obj_list, renderer, e);
+              }
+            }
+          }
           m_y -= m_vy;
           m_hitbox.y = m_y + .5;
           m_vy = -m_vy;
@@ -52,6 +62,16 @@ void Box::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & re
     {
       if(check_collision(obj_list[i]->get_hitbox()) == true)
       {
+        for(long j{0}; j < obj_list.size(); ++j)
+        {
+          if(obj_list[j]->get_type() == "Sound")
+          {
+            if(obj_list[j]->get_name() == "bump")
+            {
+              obj_list[j]->obj_main(obj_list, renderer, e);
+            }
+          }
+        }
         m_x -= m_vx;
         m_hitbox.x = m_x + .5;
         m_vx = -m_vx;
@@ -67,6 +87,16 @@ void Box::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const & re
       {
         if(obj_list[i]->get_state() == 1)
         {
+          for(long j{0}; j < obj_list.size(); ++j)
+          {
+            if(obj_list[j]->get_type() == "Sound")
+            {
+              if(obj_list[j]->get_name() == "score")
+              {
+                obj_list[j]->obj_main(obj_list, renderer, e);
+              }
+            }
+          }
           for(long j{0}; j < obj_list.size(); ++j)
           {
             if(obj_list[j]->get_type() == "Ball")

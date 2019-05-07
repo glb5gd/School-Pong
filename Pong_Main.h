@@ -46,5 +46,6 @@ const long SAMPLE_SIZE{2048};
 #include "Pong_Wall.h"
 #include "Pong_Wall2.h"
 #include "Pong_Game_Mode.h"
+#include "Pong_Sound.h"
 
 #endif

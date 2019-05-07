@@ -23,6 +23,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
       {
         if(obj_list[i]->state_changed(0, 1) == true)
         {
+          for(long j{0}; j < obj_list.size(); ++j)
+          {
+            if(obj_list[j]->get_type() == "Sound")
+            {
+              if(obj_list[j]->get_name() == "bump")
+              {
+                obj_list[j]->obj_main(obj_list, renderer, e);
+              }
+            }
+          }
           if(m_state == 0)
           {
             m_next_state = 1;
@@ -41,6 +51,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
       {
         if(obj_list[i]->state_changed(0, 1) == true)
         {
+          for(long j{0}; j < obj_list.size(); ++j)
+          {
+            if(obj_list[j]->get_type() == "Sound")
+            {
+              if(obj_list[j]->get_name() == "bump")
+              {
+                obj_list[j]->obj_main(obj_list, renderer, e);
+              }
+            }
+          }
           if(m_state == 0)
           {
             m_next_state = 1;
@@ -71,6 +91,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
           switch(m_state)
           {
             case 1:
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Sound")
+                {
+                  if(obj_list[j]->get_name() == "score")
+                  {
+                    obj_list[j]->obj_main(obj_list, renderer, e);
+                  }
+                }
+              }
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
@@ -109,6 +139,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
               break;
 
             case 2:
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Sound")
+                {
+                  if(obj_list[j]->get_name() == "score")
+                  {
+                    obj_list[j]->obj_main(obj_list, renderer, e);
+                  }
+                }
+              }
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
@@ -147,6 +187,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
               break;
 
             case 3:
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Sound")
+                {
+                  if(obj_list[j]->get_name() == "score")
+                  {
+                    obj_list[j]->obj_main(obj_list, renderer, e);
+                  }
+                }
+              }
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
@@ -187,6 +237,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
               break;
 
             case 4:
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Sound")
+                {
+                  if(obj_list[j]->get_name() == "score")
+                  {
+                    obj_list[j]->obj_main(obj_list, renderer, e);
+                  }
+                }
+              }
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));
@@ -226,6 +286,16 @@ void Cursor::obj_main(vector<Abstract_Object*> & obj_list, SDL_Renderer* const &
               break;
 
             case 5:
+              for(long j{0}; j < obj_list.size(); ++j)
+              {
+                if(obj_list[j]->get_type() == "Sound")
+                {
+                  if(obj_list[j]->get_name() == "score")
+                  {
+                    obj_list[j]->obj_main(obj_list, renderer, e);
+                  }
+                }
+              }
               obj_list.push_back(new Screen_Edge("Left", SDL_Rect{0, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Right", SDL_Rect{SCREEN_WIDTH, 0, 3, SCREEN_HEIGHT}));
               obj_list.push_back(new Screen_Edge("Top", SDL_Rect{0, 0, SCREEN_WIDTH, 3}));

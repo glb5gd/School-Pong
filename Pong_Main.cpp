@@ -35,6 +35,8 @@ int main(int argc, char* args[])
     obj_list.push_back(new Key_Down());
     obj_list.push_back(new Key_W());
     obj_list.push_back(new Key_S());
+    obj_list.push_back(new Sound("bump", "Pong_Images\\smb_bump.wav"));
+    obj_list.push_back(new Sound("score", "Pong_Images\\smb_kick.wav"));
 
     //While the user hasn't quit
     while(quit == false)
@@ -56,7 +58,7 @@ int main(int argc, char* args[])
 
       for(long i{0}; i < obj_list.size(); ++i)
       {
-        if(obj_list[i]->get_type() != "Input")
+        if(obj_list[i]->get_type() != "Input" && obj_list[i]->get_type() != "Sound")
         {
          obj_list[i]->obj_main(obj_list, renderer, e);
         }
